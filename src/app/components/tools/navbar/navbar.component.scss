@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito|Lacquer");
+
+$navbarHeight: 65px;
+$sidebarWidth: 45vw;
+$primary: #080808;
+$secondary: red;
+$bgImage: "https://images.unsplash.com/photo-1563733758230-a5d441824696?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
+
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+body,
+button,
+input {
+  font-family: Nunito;
+}
+
+* {
+  box-sizing: border-box;
+  transition: 0.4s ease all;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar {
+  background: $primary;
+  color: #fff;
+  padding: 15px;
+  width:100%;
+  height: $navbarHeight;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo {
+  cursor: pointer;
+  font-family: Lacquer;
+}
+
+.navbar ul.links {
+  margin-left: auto;
+  margin-right: 50px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  transition: 0.4s ease all, 0s ease background;
+  li {
+    text-transform: uppercase;
+    padding: 0 15px;
+    height: $navbarHeight;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    transition: 0.4s ease all, 0s ease margin;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    .active {
+      color: white;
+      border-bottom: 1px solid white;
+    }
+  }
+}
+
+@media (min-width: 0) and (max-width: 900px) {
+  .navbar {
+    width: 100% !important;
+    height: auto;
+    a {
+      font-size: 9px;
+    }
+  }
+
+  .navbar-collapse {
+    width: 100% !important;
+    background-color: black;
+    z-index: 999;
+    button {
+      display: none;
+    }
+  }
+}

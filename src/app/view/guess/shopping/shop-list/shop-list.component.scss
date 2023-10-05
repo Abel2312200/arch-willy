@@ -1,0 +1,122 @@
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.banner {
+  .image {
+    background-color: rgb(147, 3, 3);
+    width: 100%;
+    height: 40vh;
+    .wrapper {
+      position: absolute;
+      width: 100%;
+      margin-left: 0%;
+      .title {
+        h1 {
+          color: white;
+          font-size: 40px;
+          margin-top: 7%;
+          position: relative;
+          text-align: center;
+        }
+        p {
+          color: white;
+          font-size: 16px;
+        }
+      }
+      .buttons {
+        button {
+          background: black;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .product-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  label {
+    margin-top: 1%;
+  }
+  tui-select {
+    margin-left: 1%;
+    width: 15%;
+    margin-top: -0.2px;
+  }
+  button {
+    margin-left: 2%;
+    background-color: rgb(141, 2, 2);
+    color: white;
+  }
+}
+
+.search {
+  display: flex;
+  margin-top: 3%;
+  justify-content: center;
+  tui-input {
+    width: 20%;
+  }
+  select {
+    margin-left: 1%;
+    width: 90%;
+    height: 7vh;
+    margin-top: -0.2px;
+    border: 1px solid rgb(141, 2, 2);
+    border-radius: 8px;
+  }
+  button {
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: rgb(141, 2, 2);
+    color: white;
+  }
+}
+
+app-jw-modal{
+  input {
+    width: 100%;
+    height: 7vh;
+    border-radius: 4px;
+    border: 1px solid rgb(141, 2, 2);
+    outline: none;
+
+  }
+
+  .result{
+    display: flex;
+  }
+  .result-item{
+    margin-top: 3%;
+    border: 1px solid rgb(141, 2, 2);
+    padding: 10px;
+    flex-wrap: wrap;
+    .result-item-content{
+      text-align: center;
+    }
+    button {
+      margin-left: 2%;
+      background-color: rgb(141, 2, 2);
+      color: white;
+    }
+
+  }
+}
+@media (min-width: 0) and (max-width: 900px) {
+  .products {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,58 @@
+
+
+.card {
+  border:  0px !important;
+  margin-left: 20px;
+  margin-top: 15px;
+  text-align: center;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+  height:400px;
+  width: 280px;
+  border-radius: 10px;
+
+  &:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  }
+  img{
+    width: 100%;
+  }
+  .order{
+    background-color:rgb(141, 2, 2);
+    color: white;
+    margin-top: 10%;
+    margin-left: 10px !important;
+
+    &:hover{
+      background-color: white;
+      color :rgb(141, 2, 2);
+    }
+  }
+
+  tui-badge {
+    background-color: rgb(141, 2, 2);
+  }
+
+  .detail {
+    background-color:black;
+    color: white;
+    margin-top: 10%;
+
+  }
+
+  .money {
+    .price {
+      color :rgb(141, 2, 2);
+    }
+  }
+}
+
+tui-loader {
+  color : rgb(141, 2, 2) !important;
+}
+
+@media(min-width:0) and (max-width:460px) {
+  tui-island{
+    width: 100%;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="filter mt-4" >
+  <label>filtrer par marque de pieces</label>
+  <select (change)="getChoosedCategorie($event)">
+    <option ></option>
+    <option *ngFor="let item of filterData" >
+      {{item}}
+    </option>
+  </select>
+</div>

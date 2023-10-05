@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<app-back-button [text]="'Retour'"></app-back-button>
+<h1 style="text-align: center;">Detail du produit {{detailProduct.title.toUpperCase()}}</h1>
+<div class="product">
+  <div class="product-image">
+    <app-image [images]="detailProduct.images.image1"></app-image>
+  </div>
+  <div class="product-description">
+    <h1>{{detailProduct.title.toUpperCase()}}</h1>
+    <h3>Prix : {{detailProduct.price}} FCFA</h3>
+    <p>Marque : {{detailProduct.marque}}</p>
+    <p>Type : {{detailProduct.description}}</p>
+    <p> Description : {{detailProduct.description}}</p>
+    <button tuiButton appearance="custom" (click)="activeModal('custom-modal-1')">Commander</button>
+  </div>
+</div>
+
+
+<app-jw-modal id="custom-modal-1" [size]="size.width > 400 ? 80 : 130">
+  <a (click)="closeModal('custom-modal-1')" style="cursor:pointer;font-weight:bold">X</a>
+  <div class="b-form-item" class="department-form">
+    <h1 style="text-align: center;">Formulaire de commande</h1>
+    <tui-notification status="error" *ngIf="!!error"> {{error}} </tui-notification>
+
+    <div *ngIf="!isFoward">
+      <label>Nom</label>
+      <input type="text" [(ngModel)]="user.firstname" class="firstname-input" placeholder="votre nom" />
+      <label>Prenom</label>
+      <input type="text" [(ngModel)]="user.lastname" class="lastname-input" placeholder="votre prenom" />
+      <label>email</label>
+      <input type="email" [(ngModel)]="user.email" class="email-input" placeholder="votre email" />
+      <label>Telephone</label>
+      <input type="phone" [(ngModel)]="user.phone" class="phone-input" placeholder="votre numero de téléphone" />
+
+      <button type="submit" appearance="custom" tuiButton class="jw-submit" (click)="next()">Suivant</button>
+    </div>
+
+    <div *ngIf="isFoward">
+      <label>Quantité</label>
+      <input type="number" [min]="1" [max]="detailProduct.quantity ? detailProduct.quantity : 0 "
+        [(ngModel)]="order.quantity" (change)="generateTotalPriceForProduct()" class="quantity-input" />
+      <tui-notification status="info" style="margin-top :3%">Max produit disponible en stock : {{detailProduct.quantity
+        }}</tui-notification>
+      <app-shopping-detail [price]="price" [user]="user" [detailProduct]="detailProduct"
+        [quantity]=" order.quantity > detailProduct.quantity ? detailProduct.quantity :  order.quantity"
+        *ngIf="!!order.quantity"></app-shopping-detail>
+      <div class="buttons">
+        <button type="submit" appearance="custom" tuiButton class="jw-back" (click)="isFoward = false">retour</button>
+        <button type="submit" appearance="custom" tuiButton class="jw-submit" (click)="submitRequestForm()"
+          [disabled]="!order.quantity" [showLoader]="isLoad">Confirmer ma commande</button>
+      </div>
+    </div>
+  </div>
+</app-jw-modal>

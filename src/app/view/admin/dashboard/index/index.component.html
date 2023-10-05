@@ -1,0 +1,59 @@
+
+<div class="container">
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h1>{{report.dailyBooking}}</h1>
+        <p>Commandes journaliere</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1>{{report.currentStock}}</h1>
+        <p>Total produit en stock </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1>0</h1>
+        <p>Commande de la semaine</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5 table-responsive">
+    <h4>Activités recentes <tui-badge status="info"   value="{{lastFiveCommande.length}}"></tui-badge> </h4>
+    <table class="table table-bordered  ">
+      <thead class="bg-dark text-light">
+        <tr>
+          <th scope="col"> Identifiant</th>
+          <th scope="col">nom et prenom client</th>
+          <th scope="col">email</th>
+          <th scope="col">telephone</th>
+          <th scope="col">Date</th>
+          <th scope="col">Statut</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let command of lastFiveCommande">
+
+          <th scope="row">{{command?.guid}}</th>
+          <td >{{command?.nom}}  {{command?.prenom}}</td>
+          <td>{{command?.email}}</td>
+          <td>{{command?.telephone}}</td>
+          <td>{{command?.createdAt | date}}</td>
+          <td>
+            <span *ngIf="command.delivery == 0" style="color :red;"> en cours ....</span>
+            <span *ngIf="command.delivery != 0" style="color :green;"> livré</span>
+          <td>
+            <button class="btn btn-dark" routerLink="/dashboard/detail/command/{{command?.guid}}"> detail ></button>
+            <button class="btn btn-outline-dark" style="margin-left: 2%;" *ngIf="command.delivery == 0"  (click)="marqueCommeLivrer(command?.guid)"> livrer</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <a routerLink="/dashboard/commandes" style="text-decoration : none ; cursor : pointer" class="ml-2">Voir plus +</a>
+</div>

@@ -1,0 +1,32 @@
+<div class="card" (click)="navigate('/Shop/item')">
+
+  <img
+    [src]="!!item?.fileUrl ? item?.fileUrl : 'https://kumikentedesign.com/wp-content/uploads/2021/03/p-2.jpg' "
+    width="200" height="200">
+
+  <p class="tui-island__paragraph">
+    <tui-badge status="custom" value="{{item?.marque}}" class="tui-space_right-2"></tui-badge>
+  </p>
+  <h3 class="tui-island__title">{{item?.title}}</h3>
+  <div class="money">
+    <span class="price">{{item?.price | currency :'XOF'}} </span>
+  </div>
+
+  <p class="tui-island__paragraph">
+    {{item?.description?.toUpperCase()}}
+  </p>
+
+<div class="buttons">
+    <button tuiButton type="button" appearance="custom" size="m" class="detail" (click)="navigate('/Shop/item')">
+      voir +
+    </button>
+    <!--<button tuiButton type="button" appearance="custom" size="m" class="order" (click)="navigate('/Shop/order')">
+      Ajouter panier
+    </button>!-->
+
+  </div>
+
+
+  <br>
+  <br>
+</div>

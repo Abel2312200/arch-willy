@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<section class="banner">
+  <div class="image">
+    <div class="wrapper">
+      <div class="title" style="margin-left: 3% ;">
+        <h1>Notre boutique</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<app-back-button [text]="'retour'"></app-back-button>
+<section class="filter">
+  <label>Filter</label>
+  <tui-select tuiTextfieldSize="m" class="tui-space_vertical-4" [formControl]="marque">
+    Marque
+    <input tuiTextfield placeholder="Choisissez la marque du produits" />
+    <tui-data-list-wrapper *tuiDataList [items]="marques"
+      (change)="filterElementByMarque($event)"></tui-data-list-wrapper>
+  </tui-select>
+  <button tuiButton appearance="custom" (click)="openModal('search-modal-1')">Recherche Avancé</button>
+</section>
+<section class="search">
+</section>
+<section class="products">
+  <div *ngFor="let product of products  | tableFilterPipe : marque.value" class="product-list">
+    <app-shopping-card [shoppingItemData]="product"></app-shopping-card>
+  </div>
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<app-jw-modal id="search-modal-1" [size]="80" >
+  <div (click)="closeModal('search-modal-1')" style="cursor: pointer;">
+    <span style="float: right;color:rgb(139, 0, 0);font-weight: bold;">x</span>
+  </div>
+
+  <section class="modals" style="margin-top: 7%;">
+    <h1 style="text-align: center;">Recherche Avancé</h1>
+    <section class="search">
+      <div>
+        <label>Rechercher une piece</label>
+        <input [(ngModel)]="keyword" (change)="search()" name="keyword">
+      </div>
+      <!--<div>
+        <label>Marque</label>
+        <select class="tui-space_vertical-4">
+
+          <option></option>
+          <option *ngFor="let marque of marques">
+            {{marque}}
+          </option>
+        </select>
+      </div>
+      <button tuiButton appearance="custom">Rechercher</button>!-->
+    </section>
+  </section>
+
+  <p *ngIf="!!keyword">Resultat trouvé : {{searchResult.length}}</p>
+  <section class="container" *ngIf="searchResult.length>0">
+    <div *ngFor="let result of searchResult" class="result">
+      <div class="result-item">
+        <div class="result-item-content">
+          <h3>{{result.title| uppercase }}</h3>
+          <p>{{result.description}}</p>
+          <p><tui-badge value="{{result.marque}}" ></tui-badge></p>
+          <button tuiButton appearance="custom" (click)="navigate('/Shop/item/',result)"> voir les details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</app-jw-modal>
+<app-footer></app-footer>

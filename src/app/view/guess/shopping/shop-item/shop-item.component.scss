@@ -1,0 +1,127 @@
+.product {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  .product-image {
+    width: 20%;
+    height: 4oopx;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    .main {
+      width: 100%;
+      height: 80%;
+    }
+
+    .product-other-images {
+      margin-top: -5%;
+      text-align: center;
+      img {
+        margin-left: 10px;
+        border: 1px solid rgb(141, 2, 2);
+        cursor: pointer;
+        &:hover {
+          border: 2px solid black;
+        }
+      }
+    }
+  }
+  .product-description {
+    width: 50%;
+    margin-left: 2%;
+    height: 400px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    h1 {
+      margin-top: 10%;
+    }
+
+    button {
+      background: rgb(141, 2, 2);
+      color: white;
+      margin-top: 5%;
+    }
+
+    tui-input-count {
+      width: 40%;
+      margin-left: 30%;
+    }
+  }
+}
+
+@media (min-width: 0) and (max-width: 900px) {
+  .product {
+    margin-top: 10% !important;
+    display: block;
+    margin-left: 10% !important;
+  }
+
+  .product-description {
+    margin-top: -14% !important;
+    width: 90% !important;
+
+    h1 {
+      margin-top: 20% !important;
+    }
+  }
+  .product-image {
+    margin-left: 2% !important;
+    width: 90% !important;
+    .main {
+      width: 100%;
+      height: 100%;
+    }
+    .product-other-images {
+      visibility: hidden;
+    }
+  }
+
+  #custom-modal-1 {
+    .buttons {
+      display: inline;
+
+      .jw-back {
+        width: 95%;
+        margin-left: 5%;
+      }
+    }
+  }
+}
+
+#custom-modal-1 {
+  input {
+    width: 100%;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid rgb(141, 2, 2);
+  }
+
+  tui-island {
+    margin-top: 5%;
+  }
+
+  .jw-submit {
+    background-color: rgb(141, 2, 2);
+    width: 100%;
+    color: white;
+    margin-top: 5%;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    .jw-submit {
+      background-color: rgb(141, 2, 2);
+      width: auto;
+      color: white;
+      margin-top: 5%;
+      margin-left: 5%;
+    }
+    .jw-back {
+      background-color: black;
+      width: auto;
+      color: white;
+      margin-top: 5%;
+    }
+  }
+}

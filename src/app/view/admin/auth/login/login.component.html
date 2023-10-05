@@ -1,0 +1,31 @@
+<div class="content">
+  <div class="login-form">
+    <h1>Connectez vous !</h1>
+    <form class="form-group form" method="post">
+      <div class="form-field">
+        <label>email</label>
+        <br>
+        <input type="text" class="form-control" name="email" placeholder="renseigner votre email"
+          [(ngModel)]="login.email">
+      </div>
+      <div class="form-field">
+        <label>Mot de passe</label>
+        <br>
+        <input [type]="passwordType" class="form-control" name="password" placeholder="renseigner votre mot de passe"
+          [(ngModel)]="login.password">
+        <br>
+        <br>
+        <a id="password-show" (click)="showMyPassword()"
+          style="margin-top: 30px !important;text-decoration: none;color:black;cursor: pointer;">{{text}}</a>
+      </div>
+      <br>
+      <br>
+      <button tuiButton appearance="custom" class="btn btn-primary col-md-12 mt-4" type="button" id="loginButton"
+        (click)="authentification()" [showLoader]="startSpinning">Se connecter</button>
+
+    </form>
+  </div>
+  <div class="information">
+    <h1></h1>
+  </div>
+</div>

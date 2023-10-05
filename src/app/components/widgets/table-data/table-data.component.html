@@ -1,0 +1,98 @@
+<app-table-filter [filterData]="marques" (choosedCategorie)="getCategorie($event)" *ngIf="filter"></app-table-filter>
+<div class="table-responsive">
+  <table class="table table-bordered mt-4 ">
+    <thead class="bg-dark text-light">
+      <tr>
+        <th scope="col" *ngFor="let head of headers">{{head}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data  of datas | paginate: { itemsPerPage: 5, currentPage: p }  | tableFilterPipe:category">
+        <ng-container *ngIf="type == 'product'">
+          <th scope="row">{{data?.guid}}</th>
+          <td>{{data?.title }}</td>
+          <td>{{data?.description }}</td>
+          <td>{{data?.quantity}}</td>
+          <td>{{data?.price | currency : 'XOF'}}</td>
+          <td>{{data?.dateLivraison | date}}</td>
+          <td>{{data?.marque}}</td>
+          <td>{{data?.createdAt | date}}</td>
+          <td>
+            <!--<button class="btn btn-dark"> {{buttons[0]}}</button>!-->
+            <button class="btn btn-outline-dark" style="margin-left: 2%;"
+              (click)="delete(data?.id)">{{buttons[1]}}</button>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="type == 'history'">
+          <td>{{data.date | date}}</td>
+          <td><tui-badge status="error" class="tui-space_right-2" value="{{data.action}}"></tui-badge></td>
+          <td>{{data.libelle}}</td>
+
+        </ng-container>
+        <ng-container *ngIf="type == 'commande'">
+          <td>{{data?.guid}}</td>
+          <td>{{data?.nom}} {{data?.prenom}}</td>
+          <td>{{data?.email}}</td>
+          <td>{{data?.telephone}}</td>
+          <td>{{data?.createdAt | date}}</td>
+          <td> <span *ngIf="data?.delivery == 0" style="color :red;"> en cours ....</span>
+            <span *ngIf="data?.delivery != 0" style="color :green;"> livré</span>
+          </td>
+
+          <td>
+            <button class="btn btn-dark" routerLink="/dashboard/detail/command/{{data?.guid}}"> {{buttons[0]}}</button>
+
+          </td>
+        </ng-container>
+        <ng-container *ngIf="type == 'categorie'">
+          <td>{{data.name}}</td>
+          <td>{{data.marque_name}}</td>
+          <td>
+            <tui-toggle class="tui-space_left-1" [showIcons]="true" [size]="'l'"
+              [(ngModel)]="data.isActive"></tui-toggle>
+          </td>
+          <!--<td>
+            <button class="btn btn-dark">  {{buttons[0]}}</button>
+            <button class="btn btn-outline-dark" style="margin-left: 2%;" >{{buttons[1]}}</button>
+          </td>!-->
+        </ng-container>
+        <ng-container *ngIf="type == 'marque'">
+          <td>{{data.name}}</td>
+          <td>
+            <tui-toggle class="tui-space_left-1" [showIcons]="true" [size]="'l'"
+              [(ngModel)]="data.isActive"></tui-toggle>
+          </td>
+          <!--<td>
+          <button class="btn btn-dark">  {{buttons[0]}}</button>
+          <button class="btn btn-outline-dark" style="margin-left: 2%;" >{{buttons[1]}}</button>
+        </td>!-->
+        </ng-container>
+
+        <ng-container *ngIf="type == 'user'">
+          <td>{{data.firstname}}</td>
+          <td>{{data.lastname}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.phone}}</td>
+          <td>{{data.title}}</td>
+          <td>
+            <span *ngIf="data.isActive == 0" style="color:red">Désactivé</span>
+            <span *ngIf="data.isActive == 1" style="color:green">Activé</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <!--<button class="btn btn-outline-primary"> Modifier</button>!-->
+              <button class="btn btn-outline-dark" (click)="changeUserStatus(data.isActive,data.guid)">
+                <span *ngIf="data.isActive == 1">Désactivé</span>
+                <span *ngIf="data.isActive == 0">Activé !!!   </span>
+              </button>
+              <button class="btn btn-outline-danger" (click)="deleteUser(data?.guid)"> Supprimer</button>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <div style="float: right;">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

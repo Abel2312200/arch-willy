@@ -1,0 +1,69 @@
+<div class="container">
+  <ng-container *ngIf="!enableProductForm">
+    <button class="btn btn-dark" (click)="enableProductForm = true">Ajouter un produit</button>
+    <app-table-data [datas]="datas" [type]="'product'" (updateEvent)="productEvent($event)"
+      [headers]="['Identifiant','intitulé','description','Quantité','Prix','Date de livraison','Marque','Date de creation','Action']"
+      *ngIf="datas.length > 0"></app-table-data>
+  </ng-container>
+  <tui-loader [size]="'xl'" *ngIf="isLoaded"></tui-loader>
+  <ng-container *ngIf="enableProductForm">
+    <h3>Ajout de produit</h3>
+
+    <div class="card">
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data" (ngSubmit)="addNewProduct()">
+          <div (click)="enableProductForm = false" style="cursor: pointer;">
+            <span style="float: right;color:red;font-weight: bold;">X</span>
+          </div>
+
+          <div class="mt-2">
+            <label>Nom du produit</label>
+            <input type="text" class="form-control" [(ngModel)]="product.titre" name="titre">
+          </div>
+
+          <div class="mt-2">
+            <label>Description du produit</label>
+            <input type="text" class="form-control" [(ngModel)]="product.description" name="description">
+          </div>
+
+          <div class="mt-2">
+            <label>Marque</label>
+            <select type="text" class="form-control" [(ngModel)]="product.marque_id" name="marque">
+              <option></option>
+              <option *ngFor="let marque of marques" value="{{marque.id}}">
+                {{marque.name}}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label>Prix unitaire</label>
+            <input type="text" class="form-control" [(ngModel)]="product.price" name="price">
+          </div>
+          <div class="mt-2">
+            <label>Quantité</label>
+            <input type="text" class="form-control" [(ngModel)]="product.quantity" name="quantity">
+          </div>
+
+          <div class="mt-2">
+            <label>Date de livraison du produit</label>
+            <input type="date" class="form-control" [(ngModel)]="product.dateLivraison" name="dateLivraison">
+          </div>
+
+          <div class="mt-2">
+            <label>Images</label>
+            <br>
+            <input type="file" accept="image/png, image/jpeg,image/jpg , image/svg" [(ngModel)]="files" name="images" (change)="onFileSelected($event)">
+            <div class="alert alert-success mt-2 alert-dismissible fade show" role="alert" *ngIf="!!confirm">
+              image uploadé
+              <button type="button" class=" btn btn-outline-success close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-dark col-md-12" type="submit">Ajouter un produit</button>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+</div>
